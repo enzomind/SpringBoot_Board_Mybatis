@@ -1,7 +1,6 @@
-package com.board.board.domain;
+package com.board.domain;
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
