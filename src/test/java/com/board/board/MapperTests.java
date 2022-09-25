@@ -19,12 +19,12 @@ public class MapperTests {
     public void testOfInsert(){
         BoardDTO boardDTO = new BoardDTO();
 
-        boardDTO.setTitle("1번 게시글 제목");
-        boardDTO.setContent("1번 게시글 내용");
+        boardDTO.setTitle("3번 제목");
+        boardDTO.setContent("3번 내용");
         boardDTO.setWriter("테스터");
 
         int result = boardMapper.insertBoard(boardDTO);
-        System.out.println("결과 데이터는 " + result);
+        System.out.println("저장완료");
     }
 
     @Test
@@ -52,7 +52,7 @@ public class MapperTests {
 
         BoardDTO param = new BoardDTO();
 
-        param.setTitle("1번 게시글 제목을 수정.");
+        param.setTitle("1번 제목 수정.");
         param.setContent("1번 게시글 내용을 수정.");
         param.setWriter("임현주");
         param.setIdx((long) 1);
