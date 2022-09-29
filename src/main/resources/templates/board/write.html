@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{board/layout/basic.html}">
     <th:block layout:fragment="title">
         <title>Write</title>
     </th:block>
@@ -7,7 +7,7 @@
     <th:block layout:fragment="content">
         <div class="card-content">
             <form class="form-horizontal" th:action="@{/board/register}" th:object="${board}" method="post" onsubmit="return registerBoard(this)">
-                <!-- 막줄의 문법은 처음본다.. 타임리프에서의 form태그인가싶음 -->
+                <!-- 막줄의 문법은 처음본다.. submit?? 타임리프에서의 form태그인가싶음 -->
                 <input type="hidden" th:if="*{idx != null and idx > 0}" th:field="*{idx}"/>
 
                 <div class="form-group">
@@ -86,6 +86,6 @@
         </script>
     </th:block>
 
-<head th:replace="board/fragments/header :: main-head"></head>
-<body th:replace="board/fragments/body :: main-body"></body>
+<!--<head th:replace="board/fragments/header :: main-head"></head>-->
+<!--<body th:replace="board/fragments/body :: main-body"></body>-->
 </html>
