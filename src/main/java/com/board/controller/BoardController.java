@@ -18,6 +18,24 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @GetMapping(value = "/board/view")
+    public String openBoardDetail(@RequestParam(value="idx", required = false) Long idx, Model model) {
+
+        if(idx==null) {
+            return "redirect:/board/list";
+        }
+
+        BoardDTO boardDTO = boardService.getBoardDetail(idx);
+        if(boardDTO==null || "Y".equals(boardDTO.getDeleteYn())) {
+
+            return "redirect:/board/list";
+        }
+        model.addAttribute("board", boardDTO);
+
+        return "board/view";
+    }
+
+
     @GetMapping(value = "/board/write")
     public String openBoardWrite(@RequestParam(value="idx", required = false) Long idx, Model model) {
 
