@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{board/layout/basic.html}">
+<th:block layout:fragment="title">
+    <title>View</title>
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="card-content">
+        <form class="form-horizontal form-view" th:object="${board}">
+            <div class="form-group">
+                <label for="inp-type-1" class="col-sm-2 control-label">제목</label>
+                <div class="col-sm-10">
+                    <p class="form-control" th:text="*{title}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inp-type-5" class="col-sm-2 control-label">내용</label>
+                <div class="col-sm-10">
+                    <p class="form-control" th:text="*{content}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inp-type-5" class="col-sm-2 control-label">등록일</label>
+                <div class="col-sm-10">
+                    <p class="form-control" th:text="*{#temporals.format(insertTime, 'yyyy-MM-dd')}"></p>
+                </div>
+            </div>
+        </form>
+
+        <div class="btn_wrap text-center">
+            <a th:href="@{/board/list}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
+            <a th:href="@{/board/write(idx=${board.idx})}" class="btn btn-primary waves-effect wabes-light">수정하기</a>
+            <button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteBoard([[${board.idx}]])">삭제하기</button>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="add-content">
+    <div class="box-content">
+        <div class="card-content">
+            <div class="clearfix">
+                <h4 class="box-title pull-left">Comment</h4>
+            </div>
+
+            <form class="form-horizontal form-view">
+                <div class="input-group margin-bottom-20">
+                    <input type="email" class="form-control" placeholder="">
+                    <div class="input-group-btn"><button type="button" class="btn waves-effect waves-light"><i class="fa fa-commenting" aria-hidden="true"></i></button></div>
+                </div>
+
+                <ul class="notice-list">
+                    <li>
+                        <span class="name">샘플 작성자</span>
+                        <span class="desc">샘플 댓글</span>
+                        <span class="time">2022.03.01</span>
+                        <button type="button" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i> </button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</th:block>
+
+</html>
