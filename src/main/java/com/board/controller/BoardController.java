@@ -18,6 +18,29 @@ public class BoardController {
 
     private final BoardService boardService;
 
+
+    @PostMapping(value="/board/delete")
+    public String deleteBoard(@RequestParam(value = "idx", required = false) Long idx) {
+
+        if(idx == null) {
+            return "redirect:/board/list";
+        }
+
+        try {
+            boolean isDeleted = boardService.deleteBoard(idx);
+            if(isDeleted == false) {
+                //게시글 삭제 실패 시 오류 캐치
+            }
+        } catch (DataAccessException e) {
+            //DB 처리 과정 시 오류 캐치
+        } catch (Exception e) {
+            //나머지 익셉션 에러 캐치
+        }
+
+        return "redirect:/board/list";
+    }
+
+
     @GetMapping(value = "/board/view")
     public String openBoardDetail(@RequestParam(value="idx", required = false) Long idx, Model model) {
 
