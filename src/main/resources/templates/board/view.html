@@ -66,6 +66,7 @@
 
 <th:block layout:fragment="script">
     <script th:inline="javascript">
+        <!-- <script> 태그에 th:inline 속성을 자바스크립트로 선언해야 자바스크립트 사용 가능 -->
         /*<![CDATA[*/
         function deleteBoard(idx){
             if (confirm(idx + "번 글 게시글을 삭제할까요?")) {
@@ -73,7 +74,7 @@
                 var html = "";
 
                 html += '<form name="dataForm" action="'+uri+'" method="post">';
-                html += '<input type="hidden" name="idx" value"'+idx+'"/>';
+                html += '<input type="hidden" name="idx" value="'+idx+'"/>';
                 html += '</form>';
 
                 $("body").append(html)
