@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="board/fragments/header :: main-head"></head>
+<body>
+<form th:if="${not #maps.isEmpty(params)}" name="dataForm" th:action="${redirectUri}" th:method="${method}" style="display:none;">
+  <!-- 컨트롤러에서 전달받은 4개 파라미터 중에 params가 비어있지않으면 Map에 데이터 개수만큼 아래 <input> 추가 -->
+  <input th:each="key, status : ${params.keySet()}" type="hidden" th:name="${key}" th:value="${params.get(key)}"/>
+</form>
+
+<script th:src="@{/scripts/common.js}"></script>
+
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+    /* <![CDATA[ */
+    window.onload = function() {
+      var message = /*[[${message}]]*/;
+      if(isEmpty(message)==false){
+        alert(message);
+      }
+
+      var params = /*[[${params}]]*/;
+      if(isEmpty(params)==false) {
+        document.dataForm.submit();
+      } else {
+        var redirectUri = /*[[${redirectUri}]]*/;
+        location.href = redirectUri;
+      }
+    }
+    /*]]>*/
+  </script>
+</th:block>
+
+</body>
+
+</html>
